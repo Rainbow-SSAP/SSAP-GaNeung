@@ -1,0 +1,18 @@
+version: '3'
+services:
+  # Mariadb
+  mariadb:
+    image: mariadb:latest
+    environment:
+      - MARIADB_ROOT_PASSWORD=root
+      - MARIADB_DATABASE=ssap_ganeung
+    ports:
+      - "3306:3306"
+
+  # Spring Boot
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mariadb
